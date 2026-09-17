@@ -3,22 +3,24 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <section className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h3 className="heading h3">Active card</h3>
+        <div className="placeholder">Cards component</div><br/>
+        <div className="placeholder">Saved cards component</div><br/>
+                <button className="btn add-btn">Add a new card component</button><br/><br/>
+
+        
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/tonilingardsson/e-wallet-react"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Find this project's code
         </a>
       </header>
-    </div>
+    </section>
   );
 }
 
