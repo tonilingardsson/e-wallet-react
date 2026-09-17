@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import logo from './logo.svg';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <h1 className="heading h1">E-wallet         <img src={logo} className="App-logo" alt="logo" />
+</h1>
     <App />
   </React.StrictMode>
 );
