@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Wallet from './components/Wallet.js';
-import AddCard from './views/AddCard.js';
+import Wallet from './components/Wallet';
+import AddCard from './views/AddCard';
 
 function App() {
   return (
