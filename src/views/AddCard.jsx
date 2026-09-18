@@ -37,14 +37,13 @@ export default function AddCard() {
   };
 
   return (
-    <section className="addCard-view">
-      <Top title="ADD A NEW CARD" subtitle="NEW CARD" />
+<main className="add-card-page">      <Top title="ADD A NEW CARD" subtitle="NEW CARD" />
       <Card cardData={formData} />
       <CardForm
         formData={formData}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-    </section>
+    </main>
   );
 }

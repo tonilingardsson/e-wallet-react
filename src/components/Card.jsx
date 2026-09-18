@@ -5,22 +5,34 @@ export default function Card({ cardData = {} }) {
   const year = cardData.expireYear || 'YY';
   const vendor = cardData.vendor || 'IKEA Bank';
 
+  // Turns "IKEA Bank" into "ikea-bank".
+  // That lets CSS give each card vendor its own color.
+  const vendorClass = vendor.toLowerCase().replaceAll(' ', '-');
+
   return (
-    <article className={`card ${cardData.isActive ? 'card--active' : ''}`}>
+    <article
+      className={`card card--${vendorClass} ${
+        cardData.isActive ? 'card--active' : ''
+      }`}
+    >
       <div className="card__header">
+        <span className="card__chip" aria-hidden="true">
+          ▰
+        </span>
+
         <span className="card__vendor">{vendor}</span>
-        <span className="card__chip" aria-hidden="true" />
       </div>
 
       <p className="card__number">{number}</p>
 
       <div className="card__footer">
         <div>
-          <small>Card holder</small>
+          <small className="card__label">CARD HOLDER</small>
           <strong>{holder}</strong>
         </div>
+
         <div>
-          <small>Expires</small>
+          <small className="card__label">EXPIRES</small>
           <strong>
             {month}/{year}
           </strong>

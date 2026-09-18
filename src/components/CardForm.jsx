@@ -25,7 +25,7 @@ export default function CardForm({ formData, onChange, onSubmit }) {
         />
       </label>
 
-      <div className="form-row">
+      <div className="card-form__row">
         <label>
           Expire month
           <input
@@ -74,7 +74,7 @@ export default function CardForm({ formData, onChange, onSubmit }) {
         </select>
       </label>
 
-      <button type="submit">Add card</button>
+      <button className="primary-button" type="submit">Add card</button>
     </form>
   );
 }

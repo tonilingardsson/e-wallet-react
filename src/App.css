@@ -1,128 +1,414 @@
+:root {
+  --page-width: 390px;
+  --ink: #222222;
+  --muted: #777777;
+  --line: #d6d6d6;
+  --canvas: #f2f2f2;
+  --surface: #ffffff;
+  --button: #000000;
+}
+
 .App {
   min-height: 100vh;
-  background: #f4f7fb;
-  margin: 0 1em 1em 1em;
+  color: var(--ink);
+  background: var(--canvas);
 }
 
-.add-btn {
-  background-color: whitesmoke;
-  border-radius: 5px;
-  width: auto;
+/* Each route is presented as a centered mobile application screen. */
+.wallet-page,
+.add-card-page {
+  width: min(100%, var(--page-width));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 20px 36px;
+  background: var(--surface);
 }
 
-.wallet-page {
+.page-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.page-header__subtitle {
+  margin: 0 0 3px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  margin: 30px 0 12px;
+  color: #3e3e3e;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+/* Reusable payment card. */
+.card {
+  min-height: 205px;
+  padding: 21px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1b1b1b, #555555);
+  color: #ffffff;
+  box-shadow: 0 7px 16px rgb(0 0 0 / 20%);
+}
+
+.card__top-row,
+.card__bottom-row {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-  padding: 4rem 1.5rem;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.card-form,
-.saved-cards {
-  width: min(100%, 28rem);
-  padding: 2rem;
-  border: 1px solid #e0e7f0;
-  border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 1rem 2.5rem rgb(30 55 90 / 8%);
+.card__chip {
+  display: grid;
+  width: 42px;
+  height: 30px;
+  place-items: center;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #f0dc8b, #a88b35);
+  color: #79611d;
+  font-size: 1.1rem;
 }
 
-.form-heading {
-  margin-bottom: 1.5rem;
+.card__vendor {
+  max-width: 150px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: right;
 }
 
-.form-heading h2,
-.saved-cards h2 {
-  margin: 0.25rem 0 0.5rem;
-  color: #17243a;
+.card__number {
+  margin: 39px 0 23px;
+  font-family: "Courier New", monospace;
+  font-size: clamp(1.05rem, 5vw, 1.45rem);
+  letter-spacing: 0.07em;
+  white-space: nowrap;
 }
 
-.form-heading p:not(.eyebrow) {
-  margin: 0;
-  color: #718096;
+.card__bottom-row {
+  align-items: end;
 }
 
-.eyebrow {
-  margin: 0;
-  color: #536dfe;
-  font-size: 0.75rem;
+.card__bottom-row > div {
+  min-width: 0;
+}
+
+.card__bottom-row p {
+  margin: 4px 0 0;
+  font-size: 0.77rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card__label {
+  display: block;
+  color: rgb(255 255 255 / 67%);
+  font-size: 0.49rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+/* Cards below "YOUR CARDS" are deliberately smaller and visibly clickable. */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-list .card {
+  min-height: 145px;
+  padding: 16px;
+  cursor: pointer;
+  transform-origin: center;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.card-list .card:hover {
+  box-shadow: 0 10px 20px rgb(0 0 0 / 24%);
+  transform: translateY(-3px);
+}
+
+.card-list .card:active {
+  transform: scale(0.985);
+}
+
+.card-list .card__number {
+  margin: 24px 0 15px;
+  font-size: 1rem;
+}
+
+.card-list .card__chip {
+  width: 34px;
+  height: 24px;
+}
+
+.card-list .card__vendor {
+  font-size: 0.8rem;
+}
+
+.card-list .card__bottom-row p {
+  font-size: 0.64rem;
+}
+
+/* Form layout on the add-card page. */
+.new-card-section > .card {
+  margin-bottom: 28px;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .card-form label {
-  display: block;
-  margin: 1rem 0 0.4rem;
-  color: #344054;
-  font-size: 0.875rem;
-  font-weight: 600;
+  margin-top: 13px;
+  color: #444444;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 .card-form input,
 .card-form select {
-  box-sizing: border-box;
   width: 100%;
-  padding: 0.75rem 0.875rem;
-  border: 1px solid #cdd6e3;
-  border-radius: 0.5rem;
-  color: #17243a;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  outline: none;
+  background: #ffffff;
+  color: var(--ink);
   font: inherit;
 }
 
 .card-form input:focus,
 .card-form select:focus {
-  outline: 2px solid #a9b7ff;
-  border-color: #536dfe;
+  border-color: #222222;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
 }
 
-.form-row {
+.card-form__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
 }
 
-.form-row label {
-  white-space: nowrap;
+.card-form__row > div {
+  display: flex;
+  flex-direction: column;
 }
 
-.card-form button {
+.primary-button,
+.secondary-button {
+  display: block;
   width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.8rem 1rem;
-  border: 0;
-  border-radius: 0.5rem;
-  background: #536dfe;
-  color: white;
+  margin-top: 27px;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: var(--button);
+  color: #ffffff;
   cursor: pointer;
   font: inherit;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.primary-button:hover {
+  background: #333333;
+}
+
+.primary-button:active,
+.secondary-button:active {
+  transform: scale(0.985);
+}
+
+.secondary-button {
+  margin-top: 14px;
+  border-color: #cfcfcf;
+  background: #ffffff;
+  color: #222222;
+}
+
+.secondary-button:hover {
+  background: #f3f3f3;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.card-list .card {
+  width: 100%;
+  margin: 0;
+}
+
+/* Keep the link/button below the list instead of beside a card. */
+.wallet-page > a,
+.wallet-page .primary-button {
+  width: 100%;
+  margin-top: 28px;
+}
+
+/* Layout classes used by the current JSX files. */
+.add-card-page {
+  width: min(100%, var(--page-width));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 20px 36px;
+  background: var(--surface);
+}
+
+.saved-cards,
+.active-card-section {
+  width: 100%;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* The button is only a clickable wrapper around a saved card. */
+.wallet-card {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.wallet-card .card {
+  width: 100%;
+  margin: 0;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.wallet-card:hover .card {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgb(0 0 0 / 24%);
+}
+
+.wallet-card--active .card {
+  outline: 3px solid #111111;
+  outline-offset: 3px;
+}
+
+/* These names match Card.jsx: card__header and card__footer. */
+.card__header,
+.card__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card__footer {
+  align-items: flex-end;
+}
+
+.card__footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.card__footer strong {
+  font-size: 0.78rem;
+}
+
+.card__label {
+  color: rgb(255 255 255 / 68%);
+  font-size: 0.5rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
-.card-form button:hover {
-  background: #4055d6;
+/* Default card color plus one color per select option. */
+.card--ikea-bank {
+  background: linear-gradient(135deg, #1c8b49, #57c978);
 }
 
-.placeholder {
-  border: solid 2px palevioletred;
-  padding: 1em;
-  max-height: 6em;
-  width: 10em;
+.card--nordea {
+  background: linear-gradient(135deg, #512285, #9b56c7);
 }
 
-.saved-cards {
-  color: #536174;
+.card--swedbank {
+  background: linear-gradient(135deg, #e1a100, #f6cb48);
+  color: #1e1e1e;
 }
 
-.saved-cards p {
-  margin-bottom: 0;
+.card--swedbank .card__label {
+  color: rgb(0 0 0 / 56%);
 }
 
-@media (max-width: 700px) {
-  .wallet-page {
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
+/* A card preview should have spacing above the form. */
+.add-card-page > .card {
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+/* This matches the renamed form row in CardForm.jsx. */
+.card-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Your link uses add-btn in the older JSX.
+   This keeps it styled even before every class is cleaned up. */
+.add-btn {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 15px;
+  border-radius: 3px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media (min-width: 600px) {
+  .wallet-page,
+  .add-card-page {
+    min-height: auto;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    border-radius: 10px;
+    box-shadow: 0 12px 35px rgb(0 0 0 / 10%);
   }
 }
