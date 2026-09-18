@@ -1,26 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Wallet from './components/Wallet';
+import AddCard from './views/AddCard';
 
 function App() {
   return (
-    <section className="App">
-      <header className="App-header">
-        <h3 className="heading h3">Active card</h3>
-        <div className="placeholder">Cards component</div><br/>
-        <div className="placeholder">Saved cards component</div><br/>
-                <button className="btn add-btn">Add a new card component</button><br/><br/>
-
-        
-        <a
-          className="App-link"
-          href="https://github.com/tonilingardsson/e-wallet-react"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Find this project's code
-        </a>
-      </header>
-    </section>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Wallet />} />
+          <Route path="/addcard" element={<AddCard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
