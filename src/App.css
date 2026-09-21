@@ -1,20 +1,20 @@
 :root {
   --page-width: 390px;
-  --ink: #222222;
-  --muted: #777777;
+  --ink: #222;
+  --muted: #777;
   --line: #d6d6d6;
   --canvas: #f2f2f2;
-  --surface: #ffffff;
-  --button: #000000;
+  --surface: #fff;
+  --button: #008000;
 }
 
 .App {
   min-height: 100vh;
-  color: var(--ink);
   background: var(--canvas);
+  color: var(--ink);
 }
 
-/* Each route is presented as a centered mobile application screen. */
+/* Page layout */
 .wallet-page,
 .add-card-page {
   width: min(100%, var(--page-width));
@@ -24,153 +24,146 @@
   background: var(--surface);
 }
 
-.page-header {
-  margin-bottom: 28px;
-  text-align: center;
-}
-
-.page-header__subtitle {
-  margin: 0 0 3px;
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-}
-
-h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+.active-card-section,
+.saved-cards {
+  width: 100%;
 }
 
 h2 {
   margin: 30px 0 12px;
   color: #3e3e3e;
   font-size: 0.68rem;
-  font-weight: 700;
   letter-spacing: 0.13em;
 }
 
-/* Reusable payment card. */
+/* Card */
 .card {
+  display: flex;
+  flex-direction: column;
   min-height: 205px;
   padding: 21px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #1b1b1b, #555555);
-  color: #ffffff;
+  color: #fff;
   box-shadow: 0 7px 16px rgb(0 0 0 / 20%);
 }
 
-.card__top-row,
-.card__bottom-row {
+.card__header,
+.card__footer {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
+}
+
+.card__footer {
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.card__footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .card__chip {
-  display: grid;
   width: 42px;
   height: 30px;
-  place-items: center;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #f0dc8b, #a88b35);
-  color: #79611d;
-  font-size: 1.1rem;
+  object-fit: contain;
 }
 
-.card__vendor {
-  max-width: 150px;
-  font-size: 1rem;
-  font-weight: 800;
-  text-align: right;
+.card__vendor-logo {
+  width: 92px;
+  height: 34px;
+  object-fit: contain;
+  object-position: right center;
 }
 
 .card__number {
-  margin: 39px 0 23px;
+  margin: 39px 0 0;
   font-family: "Courier New", monospace;
   font-size: clamp(1.05rem, 5vw, 1.45rem);
   letter-spacing: 0.07em;
   white-space: nowrap;
 }
 
-.card__bottom-row {
-  align-items: end;
-}
-
-.card__bottom-row > div {
-  min-width: 0;
-}
-
-.card__bottom-row p {
-  margin: 4px 0 0;
-  font-size: 0.77rem;
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.card__footer strong {
+  font-size: 1.2rem;
 }
 
 .card__label {
-  display: block;
-  color: rgb(255 255 255 / 67%);
-  font-size: 0.49rem;
+  color: rgb(255 255 255 / 68%);
+  font-size: 0.5rem;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
 }
 
-/* Cards below "YOUR CARDS" are deliberately smaller and visibly clickable. */
+/* Vendor themes */
+.card--bitcoin-inc {
+  background: linear-gradient(135deg, #ffb32c, #f08a00);
+  color: #1e1e1e;
+}
+
+.card--blockchain-inc {
+  background: linear-gradient(135deg, #4d88f3, #2350b6);
+}
+
+.card--evil-corp {
+  background: linear-gradient(135deg, #e4e4e4, #a8a8a8);
+  color: #1e1e1e;
+}
+
+.card--ninja-bank {
+  background: linear-gradient(135deg, #1e1e1e, #555);
+}
+
+.card--bitcoin-inc .card__label,
+.card--evil-corp .card__label {
+  color: rgb(0 0 0 / 56%);
+}
+
+/* Saved-card list */
 .card-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.card-list .card {
-  min-height: 145px;
-  padding: 16px;
+.wallet-card {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transform-origin: center;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
+  text-align: left;
 }
 
-.card-list .card:hover {
-  box-shadow: 0 10px 20px rgb(0 0 0 / 24%);
+.wallet-card .card {
+  width: 100%;
+  min-height: 180px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.wallet-card:hover .card {
   transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgb(0 0 0 / 24%);
 }
 
-.card-list .card:active {
-  transform: scale(0.985);
+.wallet-card--active .card {
+  outline: 3px solid #111;
+  outline-offset: 3px;
 }
 
-.card-list .card__number {
-  margin: 24px 0 15px;
-  font-size: 1rem;
-}
-
-.card-list .card__chip {
-  width: 34px;
-  height: 24px;
-}
-
-.card-list .card__vendor {
-  font-size: 0.8rem;
-}
-
-.card-list .card__bottom-row p {
-  font-size: 0.64rem;
-}
-
-/* Form layout on the add-card page. */
-.new-card-section > .card {
-  margin-bottom: 28px;
+/* Add-card form */
+.add-card-page > .card {
+  width: 100%;
+  margin-bottom: 26px;
+  position: relative;
+  z-index: 1;
 }
 
 .card-form {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -178,7 +171,7 @@ h2 {
 
 .card-form label {
   margin-top: 13px;
-  color: #444444;
+  color: #444;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -192,38 +185,33 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 3px;
   outline: none;
-  background: #ffffff;
+  background: #fff;
   color: var(--ink);
   font: inherit;
 }
 
 .card-form input:focus,
 .card-form select:focus {
-  border-color: #222222;
+  border-color: #222;
   box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
 }
 
 .card-form__row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.card-form__row > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.primary-button,
-.secondary-button {
+/* Buttons */
+.primary-button {
   display: block;
   width: 100%;
   margin-top: 27px;
   padding: 15px;
-  border: 1px solid transparent;
+  border: 0;
   border-radius: 3px;
   background: var(--button);
-  color: #ffffff;
+  color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 0.73rem;
@@ -231,175 +219,14 @@ h2 {
   letter-spacing: 0.12em;
   text-align: center;
   text-decoration: none;
-  transition:
-    background 150ms ease,
-    transform 150ms ease;
 }
 
 .primary-button:hover {
-  background: #333333;
+  background: #006d00;
 }
 
-.primary-button:active,
-.secondary-button:active {
+.primary-button:active {
   transform: scale(0.985);
-}
-
-.secondary-button {
-  margin-top: 14px;
-  border-color: #cfcfcf;
-  background: #ffffff;
-  color: #222222;
-}
-
-.secondary-button:hover {
-  background: #f3f3f3;
-}
-
-.card-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.card-list .card {
-  width: 100%;
-  margin: 0;
-}
-
-/* Keep the link/button below the list instead of beside a card. */
-.wallet-page > a,
-.wallet-page .primary-button {
-  width: 100%;
-  margin-top: 28px;
-}
-
-/* Layout classes used by the current JSX files. */
-.add-card-page {
-  width: min(100%, var(--page-width));
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 28px 20px 36px;
-  background: var(--surface);
-}
-
-.saved-cards,
-.active-card-section {
-  width: 100%;
-}
-
-.card-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 100%;
-}
-
-/* The button is only a clickable wrapper around a saved card. */
-.wallet-card {
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-}
-
-.wallet-card .card {
-  width: 100%;
-  margin: 0;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.wallet-card:hover .card {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 22px rgb(0 0 0 / 24%);
-}
-
-.wallet-card--active .card {
-  outline: 3px solid #111111;
-  outline-offset: 3px;
-}
-
-/* These names match Card.jsx: card__header and card__footer. */
-.card__header,
-.card__footer {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.card__footer {
-  align-items: flex-end;
-}
-
-.card__footer > div {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.card__footer strong {
-  font-size: 0.78rem;
-}
-
-.card__label {
-  color: rgb(255 255 255 / 68%);
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-/* Default card color plus one color per select option. */
-.card--ikea-bank {
-  background: linear-gradient(135deg, #1c8b49, #57c978);
-}
-
-.card--nordea {
-  background: linear-gradient(135deg, #512285, #9b56c7);
-}
-
-.card--swedbank {
-  background: linear-gradient(135deg, #e1a100, #f6cb48);
-  color: #1e1e1e;
-}
-
-.card--swedbank .card__label {
-  color: rgb(0 0 0 / 56%);
-}
-
-/* A card preview should have spacing above the form. */
-.add-card-page > .card {
-  width: 100%;
-  margin-bottom: 26px;
-}
-
-/* This matches the renamed form row in CardForm.jsx. */
-.card-form__row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-/* Your link uses add-btn in the older JSX.
-   This keeps it styled even before every class is cleaned up. */
-.add-btn {
-  display: block;
-  width: 100%;
-  margin-top: 28px;
-  padding: 15px;
-  border-radius: 3px;
-  background: #111111;
-  color: #ffffff;
-  font-size: 0.73rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-align: center;
-  text-decoration: none;
 }
 
 @media (min-width: 600px) {

@@ -16,7 +16,7 @@ export default function AddCard() {
     expireMonth: '',
     expireYear: '',
     cvv: '',
-    vendor: 'IKEA Bank',
+    vendor: 'Bitcoin Inc',
   });
 
   const handleChange = (event) => {

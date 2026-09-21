@@ -68,9 +68,10 @@ export default function CardForm({ formData, onChange, onSubmit }) {
       <label>
         Vendor
         <select name="vendor" value={formData.vendor} onChange={onChange}>
-          <option value="IKEA Bank">IKEA Bank</option>
-          <option value="Nordea">Nordea</option>
-          <option value="Swedbank">Swedbank</option>
+          <option value="Bitcoin Inc">Bitcoin Inc</option>
+          <option value="Blockchain Inc">Blockchain Inc</option>
+          <option value="Evil Corp">Evil Corp</option>
+          <option value="Ninja Bank">Ninja Bank</option>
         </select>
       </label>
 
