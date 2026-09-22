@@ -20,7 +20,7 @@
   width: min(100%, var(--page-width));
   min-height: 100vh;
   margin: 0 auto;
-  padding: 28px 20px 36px;
+  padding: 28px 36px;
   background: var(--surface);
 }
 
@@ -54,6 +54,10 @@ h2 {
   gap: 12px;
 }
 
+.card__header {
+  align-items: flex-start;
+}
+
 .card__footer {
   align-items: flex-end;
   margin-top: auto;
@@ -75,7 +79,7 @@ h2 {
   width: 92px;
   height: 34px;
   object-fit: contain;
-  object-position: right center;
+  object-position: left;
 }
 
 .card__number {
@@ -95,6 +99,12 @@ h2 {
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+.card__vendor-text {
+  margin-left: auto;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 /* Vendor themes */
@@ -138,9 +148,7 @@ h2 {
 }
 
 .wallet-card .card {
-  width: 100%;
-  min-height: 180px;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  padding: 14px 16px;
 }
 
 .wallet-card:hover .card {

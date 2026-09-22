@@ -9,7 +9,7 @@ const initialState = {
       expireMonth: 12,
       expireYear: 26,
       cvv: 123,
-      vendor: 'IKEA Bank',
+      vendor: 'Bitcoin Inc',
       isActive: true,
     },
   ],

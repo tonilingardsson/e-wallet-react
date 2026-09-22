@@ -1,5 +1,4 @@
-import chipDark from '../assets/chip-dark.svg';
-import chipLight from '../assets/chip-light.svg';
+
 import vendorBitcoin from '../assets/vendor-bitcoin.svg';
 import vendorBlockchain from '../assets/vendor-blockchain.svg';
 import vendorEvil from '../assets/vendor-evil.svg';
@@ -18,6 +17,7 @@ export default function Card({ cardData = {} }) {
   const month = cardData.expireMonth || 'MM';
   const year = cardData.expireYear || 'YY';
   const vendor = cardData.vendor || 'Bitcoin Inc';
+  const vendorLogo = vendorLogos[vendor];
   
 
   // Turns "IKEA Bank" into "ikea-bank".
@@ -31,18 +31,16 @@ export default function Card({ cardData = {} }) {
       }`}
     >
      <div className="card__header">
-  <img
-    className="card__chip"
-    src={vendor === 'Evil Corp' ? chipDark : chipLight}
-    alt=""
-  />
-
-  <img
-    className="card__vendor-logo"
-    src={vendorLogos[vendor]}
-    alt={vendor}
-  />
-</div>ß
+        {vendorLogo ? (
+        <img
+          className="card__vendor-logo"
+          src={vendorLogo}
+          alt={vendor}
+        />
+          ) : (
+            <span className="card__vendor-text">{vendor}</span>
+          )}
+    </div>
 
       <p className="card__number">{number}</p>
 
