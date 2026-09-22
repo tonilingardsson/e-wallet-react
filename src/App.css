@@ -130,16 +130,16 @@ h2 {
 .card--evil-corp .card__label {
   color: rgb(0 0 0 / 56%);
 }
-
-/* Saved-card list */
 .card-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  padding-bottom: 20px;
 }
 
 .wallet-card {
+  position: relative;
   width: 100%;
+  margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
@@ -147,13 +147,52 @@ h2 {
   text-align: left;
 }
 
+/* Keep only the top 56px of the previous card visible. */
+.wallet-card + .wallet-card {
+  margin-top: -149px;
+}
+
+/* A later card must sit above the earlier card. */
+.wallet-card:nth-child(1) {
+  z-index: 1;
+}
+
+.wallet-card:nth-child(2) {
+  z-index: 2;
+}
+
+.wallet-card:nth-child(3) {
+  z-index: 3;
+}
+
+.wallet-card:nth-child(4) {
+  z-index: 4;
+}
+
+.wallet-card:nth-child(5) {
+  z-index: 5;
+}
+
 .wallet-card .card {
-  padding: 14px 16px;
+  width: 100%;
+  min-height: 205px;
+  margin: 0;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* Hover makes the chosen card easier to inspect on desktop. */
+.wallet-card:hover {
+  z-index: 20;
 }
 
 .wallet-card:hover .card {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 22px rgb(0 0 0 / 24%);
+  transform: translateY(-7px);
+  box-shadow: 0 14px 24px rgb(0 0 0 / 28%);
+}
+
+/* The selected card gets the strongest visible state. */
+.wallet-card--active {
+  z-index: 30;
 }
 
 .wallet-card--active .card {
